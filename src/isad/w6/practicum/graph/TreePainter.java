@@ -7,6 +7,7 @@ package isad.w6.practicum.graph;
 import isad.w6.practicum.o1.Node;
 import isad.w6.practicum.o1.Tree;
 import java.awt.Graphics;
+import java.util.List;
 
 /**
  *
@@ -15,6 +16,8 @@ import java.awt.Graphics;
 public class TreePainter extends javax.swing.JPanel {
 
 	private Tree _tree;
+	private static final int circleRadius = 25;
+	private static final double xFactor = 3.5, yFactor = 2.5;
 	/**
 	 * Creates new form TreePainter
 	 */
@@ -33,9 +36,17 @@ public class TreePainter extends javax.swing.JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-
-		g.drawString("BLAH", 20, 20);
-		g.drawRect(200, 200, 200, 200);
+		getTree().calcX();
+		getTree().calcY();
+		
+		List<Node<String>> l = getTree().getNodes();
+		for(Node<String> node : l){
+			int x = (int) ((int) node.getX()*circleRadius*xFactor), 
+				y = (int) (getTree().height()*circleRadius*yFactor-node.getY()*circleRadius*yFactor);
+			g.drawOval(x, y, circleRadius*2, circleRadius*2);
+			g.drawString(node.getData().toString(), x+circleRadius, y+circleRadius);
+		}
+		
 	}
 
 	/**
@@ -59,4 +70,18 @@ public class TreePainter extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+
+	/**
+	 * @return the _tree
+	 */
+	private Tree getTree() {
+		return _tree;
+	}
+
+	/**
+	 * @param tree the _tree to set
+	 */
+	private void setTree(Tree tree) {
+		this._tree = tree;
+	}
 }
