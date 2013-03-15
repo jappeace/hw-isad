@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
  * @author jappie
  */
 public class TreeTest {
-	Tree<Integer> instance;
+	Tree<String> instance;
 	public TreeTest() {
 	}
 	
@@ -31,11 +31,14 @@ public class TreeTest {
 	@Before
 	public void setUp() {
 		System.out.print("Practicum bullshit: ");
-		Node<Integer> root = new Node<Integer>(6, null, new Node<Integer>(4, 
-							new Node<Integer>(8), new Node<Integer>(3, 
-							new Node<Integer>(7, null, new Node<Integer>(1)), 
-							new Node<Integer>(2, new Node<Integer>(1)))));
-		instance = new Tree<Integer>(root);
+		Node<String> root = new Node<String>("F", null, 
+								new Node<String>("D", 
+							new Node<String>("I"), new Node<String>("C", 
+							new Node<String>("G", null, new Node<String>("A")),
+				
+																	new Node<String>("B", 
+														new Node<String>("A")))));
+		instance = new Tree<String>(root);
 	}
 	
 	@After
@@ -46,7 +49,7 @@ public class TreeTest {
 	public void testTreePreOrder() {
 		System.out.println("tree working");
 
-		assertEquals("64837121", instance.printPreOrder());
+		assertEquals("FDICGABA", instance.printPreOrder());
 		
 	}
 	
@@ -55,7 +58,7 @@ public class TreeTest {
 		System.out.println("coordinates");
 		instance.calcX();
 		instance.calcY();
-		assertEquals("6(1,5)4(2,4)8(1,1)3(5,3)7(3,2)1(4,1)2(7,2)1(6,1)", instance.printPreWithCoordinates());
+		assertEquals("F(1,5)D(3,4)I(2,1)C(6,3)G(4,2)A(5,1)B(8,2)A(7,1)", instance.printPreWithCoordinates());
 		
 	}
 }

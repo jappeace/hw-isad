@@ -43,14 +43,18 @@ public class Node<T> extends isad.w4.tree.binary.Node {
 		
 	}
 	public int calcX( int offset){
-		
-		offset = (hasLft()? ((Node<T>)getLft()).calcX(offset -1) : 0) +1;
-		if(hasRght()){
-			((Node<T>)getRght()).calcX(offset + (hasLft()? getLft().size() : 0));
-		}
-		setX(offset);
-		return offset;
+		int result = setChildX(getLft(), offset)  + 1;
+		int rght = setChildX(getRght(), result);
+		setX(result);
+		result += (rght-result);
+		return result;
 				
+	}
+	private int setChildX(isad.w4.tree.binary.Node<T> target, int offset){
+		if(target != null){
+			return ((Node<T>)target).calcX(offset);
+		}
+		return offset;
 	}
 	public String printPreWithCoordinates(){
 		return toString() + "(" + getX() +"," + getY() +")"
