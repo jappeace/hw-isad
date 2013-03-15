@@ -19,9 +19,11 @@ public class Graph<T> extends isad.w6.graph.Path.Graph<T> {
 		List<Vertex<T>> vertexes = this.listVertexes();
 		
 		for(Vertex<T> current: vertexes){
-			if(current.getStatus() != Vertex.Status.Default){
+			if(current.getStatus() != Vertex.Status.Interpeted){
 				
-				current.setStatus(Vertex.Status.Interpeted);
+				if(current.getStatus() != Vertex.Status.Used){
+					current.setStatus(Vertex.Status.Interpeted);
+				}
 				List<Edge> edges = current.getConnections();
 				for(Edge next: edges){
 					((Vertex<T>)next.getTo()).setStatus(Vertex.Status.Used);
