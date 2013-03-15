@@ -15,7 +15,7 @@ import java.util.List;
 public class Vertex<T> extends isad.w6.graph.Vertex<T>{
 	public static final Double INFINIT = Double.MAX_VALUE;
 	public enum Status{
-		Default, Used, Printed;
+		Default, Used, Printed, Interpeted;
 	}
 	private Double _distance = INFINIT; // Cost
 	private Vertex<T> _previous;

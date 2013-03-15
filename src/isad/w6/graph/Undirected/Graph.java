@@ -4,8 +4,8 @@
  */
 package isad.w6.graph.Undirected;
 
-import isad.w6.graph.Vertex;
-import java.util.ArrayList;
+import isad.w6.graph.Edge;
+import isad.w6.graph.Path.Vertex;
 import java.util.List;
 
 /**
@@ -15,11 +15,33 @@ import java.util.List;
 public class Graph<T> extends isad.w6.graph.Path.Graph<T> {
 	
 	public boolean isConnected(){
+		clear();
+		List<Vertex<T>> vertexes = this.listVertexes();
 		
-		List<Vertex<T>> vertexes = new ArrayList<Vertex<T>>(this.getVertexes().values());
+		for(Vertex<T> current: vertexes){
+			if(current.getStatus() != Vertex.Status.Default){
+				
+				current.setStatus(Vertex.Status.Interpeted);
+				List<Edge> edges = current.getConnections();
+				for(Edge next: edges){
+					((Vertex<T>)next.getTo()).setStatus(Vertex.Status.Used);
+				}
+				
+			}
+		}
+		int counter = 0;
+		for(Vertex<T> current: vertexes){
+			if(current.getStatus() == Vertex.Status.Interpeted){
+				counter++;
+			}else if(current.getStatus() == Vertex.Status.Default){
+				return false;
+			}
+			if(counter > 1){
+				return false;
+			}
+		}
 		
-		
-		return false;
+		return true;
 	}
 	
 }
