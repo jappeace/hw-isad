@@ -125,19 +125,27 @@ public class PathGraphTest {
 		assertEquals("jappie(0.0)->henk(-5.3)", resultVertex.toString());
 		
 		instance.disConnect("jappie", "henk");
-		instance.disConnect("jappie", "pownzor");
-		instance.connect("jappie", "pownzor", -5.1);
+		instance.reConnect("jappie", "pownzor", -5.1);
 		
 		resultGraph = instance.Find("man");	
 		assertEquals("Data: \n" +
-					"		jappie(0.0)->super(14.0)\n" +
-					"		jappie(0.0)->pownzor(10.0)\n" +
-					"		jappie(0.0)->super(14.0)->man(27.0)->henk(42.0)\n" +
-					"		jappie(0.0)->pownzor(10.0)->mega(63.0)\n" +
-					"		jappie(0.0)->super(14.0)->man(27.0)\n" +
-					"		jappie(0.0)\n" +
+					"		man(0.0)->henk(15.0)->jappie(30.0)->super(44.0)\n" +
+					"		man(0.0)->henk(15.0)->jappie(30.0)->pownzor(24.9)\n" +
+					"		man(0.0)->henk(15.0)\n" +
+					"		man(0.0)->henk(15.0)->jappie(30.0)->pownzor(24.9)->mega(77.9)\n" +
+					"		man(0.0)\n" +
+					"		man(0.0)->henk(15.0)->jappie(30.0)\n" +
 					"", resultGraph.toString());
 		
+		instance.reConnect("henk", "jappie", -20.0);
+		instance.reConnect("super", "man", -35.0);
+		
+		try{
+			instance.Find("man");
+			fail("Code is rigged to produce a negative loop. An exception is excpected");
+		}catch(IllegalArgumentException e){
+			assertEquals("NegativeWeigted is caught in a negative cycle", e.getMessage());
+		}
 		
 	}	
 }
