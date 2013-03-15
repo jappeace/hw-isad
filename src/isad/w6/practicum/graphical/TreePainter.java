@@ -2,10 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package isad.w6.practicum.graph;
+package isad.w6.practicum.graphical;
 
 import isad.w6.practicum.o1.Node;
 import isad.w6.practicum.o1.Tree;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class TreePainter extends javax.swing.JPanel {
 	public TreePainter() {
 		initComponents();
 		// tabbed to make a rough assesment of the tree, for debuging reasons
-		Node<String> root = new Node<String>("F", null, 
+		Node<String> root = new Node<String>("F", new Node<String>("A", new Node<String>("B", new Node<String>("4"), new Node<String>("O"))), 
 								new Node<String>("D", 
 							new Node<String>("I"), new Node<String>("C", 
 							new Node<String>("G", null, new Node<String>("A")),
@@ -37,18 +38,41 @@ public class TreePainter extends javax.swing.JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		getTree().calcX();
-		getTree().calcY();
 		
 		List<Node<String>> l = getTree().getNodes();
+		
 		for(Node<String> node : l){
-			int x = (int) ((int) node.getX()*circleRadius*xFactor), 
-				y = (int)(isMirrord() ?getTree().height()*circleRadius*yFactor-node.getY()*circleRadius*yFactor 
-					: node.getY()*circleRadius*yFactor);
-			g.drawOval(x, y, circleRadius*2, circleRadius*2);
+			int x = calcX(node), 
+				y = calcY(node);
+			
+			
+			if(node.hasLft()){
+				drawLine(g, x, y, (Node<String>)node.getLft());
+			}
+			if(node.hasRght()){
+				drawLine(g, x, y, (Node<String>)node.getRght());				
+			}
+			
+			g.setColor(Color.black);
+			g.fillOval(x, y, circleRadius*2, circleRadius*2);
+			g.setColor(Color.white);
 			g.drawString(node.getData().toString(), x+circleRadius, y+circleRadius);
 		}
 		
+	}
+	private void drawLine(Graphics g, int x, int y, Node<String> to){
+		g.setColor(Color.red);
+		g.drawLine(x+circleRadius, y+circleRadius, calcX(to)+circleRadius, calcY(to)+circleRadius);
+		g.drawLine(x+circleRadius, y+circleRadius+1, calcX(to)+circleRadius, calcY(to)+circleRadius+1);	
+		g.drawLine(x+circleRadius+1, y+circleRadius, calcX(to)+circleRadius+1, calcY(to)+circleRadius);	
+	}
+	private int calcX(Node<String> node){
+		return  (int) ((int) node.getX()*circleRadius*xFactor);
+	}
+	private int calcY(Node<String> node){
+		return (int)(isMirrord() ?
+				getTree().height()*circleRadius*yFactor-node.getY()*circleRadius*yFactor 
+					: node.getY()*circleRadius*yFactor);
 	}
 
 	/**

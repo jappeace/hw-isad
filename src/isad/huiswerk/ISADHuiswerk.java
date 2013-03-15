@@ -4,7 +4,7 @@
  */
 package isad.huiswerk;
 
-import isad.w6.practicum.graph.GUI;
+import isad.w6.practicum.graphical.GUI;
 
 /**
  *
