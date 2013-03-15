@@ -26,6 +26,9 @@ public class Node<T> extends isad.w4.tree.binary.Node {
 	 * @return the _x
 	 */
 	public int getX() {
+		if(_x == 0){
+			calcX(0);
+		}
 		return _x;
 	}
 
@@ -69,6 +72,9 @@ public class Node<T> extends isad.w4.tree.binary.Node {
 	 * @return the _y
 	 */
 	public int getY() {
+		if(_y == 0){
+			calcY(1);
+		}
 		return _y;
 	}
 
