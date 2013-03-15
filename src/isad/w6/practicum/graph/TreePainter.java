@@ -6,6 +6,7 @@ package isad.w6.practicum.graph;
 
 import isad.w6.practicum.o1.Node;
 import isad.w6.practicum.o1.Tree;
+import java.awt.Graphics;
 
 /**
  *
@@ -28,6 +29,13 @@ public class TreePainter extends javax.swing.JPanel {
 																	new Node<String>("B", 
 														new Node<String>("A")))));
 		_tree = new Tree<String>(root);
+	}
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+
+		g.drawString("BLAH", 20, 20);
+		g.drawRect(200, 200, 200, 200);
 	}
 
 	/**

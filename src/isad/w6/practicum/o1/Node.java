@@ -4,6 +4,9 @@
  */
 package isad.w6.practicum.o1;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author jappie
@@ -74,5 +77,19 @@ public class Node<T> extends isad.w4.tree.binary.Node {
 	 */
 	public void setY(int y) {
 		this._y = y;
+	}
+	
+	public List<Node<T>> getNodes(){
+		ArrayList<Node<T>> list = new ArrayList<Node<T>>();
+		if(hasLft()){
+			list.add((Node<T>) this.getLft());
+			list.addAll(((Node<T>) this.getLft()).getNodes());
+		}
+		if(hasRght()){
+			list.add((Node<T>) this.getRght());
+			list.addAll(((Node<T>) this.getRght()).getNodes());
+		}
+		return list;
+		
 	}
 }
