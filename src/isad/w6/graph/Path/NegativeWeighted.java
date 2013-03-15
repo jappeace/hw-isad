@@ -4,6 +4,8 @@
  */
 package isad.w6.graph.Path;
 
+import isad.w6.graph.Path.PathVertex.Status;
+
 /**
  *
  * @author jappie
@@ -21,15 +23,26 @@ public class NegativeWeighted<T> extends PositiveWeighted<T> {
 		current.setDistance((double)0);
 		// three cycles should be enough
 		for(int i = 3; i > 0; i--){
+			current.resetStatus();
 			DijkstrasAlgoritm(current);
 		}
 		Check e = new Check(data);
+		current.resetStatus();
 		e.DijkstrasAlgoritm(current);
 		if(e.isOverwridden()){
 			throw new IllegalArgumentException("NegativeWeigted is caught in a negative cycle");
 		}
 		return data;
 	}
+	
+	@Override
+	public void onLoopEnd(PathVertex<T> target){
+		if(target.getStatus() == Status.Default){ // otherwise stackoverflow
+			DijkstrasAlgoritm(target);
+		}
+	}
+	
+	
 	/*
 	 * a class that overwrites onoverwrite to check if dijkstras algoritm overwrites somthing
 	 */

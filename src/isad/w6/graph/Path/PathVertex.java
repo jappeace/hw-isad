@@ -6,6 +6,7 @@ package isad.w6.graph.Path;
 
 import isad.w6.graph.Edge;
 import isad.w6.graph.Vertex;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -30,10 +31,28 @@ public class PathVertex<T> extends Vertex<T>{
 		super(data, connections);
 	}
 	
+	/**
+	 * clears this vertex to its default state
+	 */
 	public void clear(){
 		setDistance(INFINIT);
 		setPrevious(null);
 		setStatus(Status.Default);
+	}
+	
+	/**
+	 * resets the status of this and all connected vertexes recursivly
+	 */
+	public void resetStatus(){
+		setStatus(Status.Default);
+		
+		Iterator<Edge> i = getConnections().iterator();
+		while(i.hasNext()){
+			PathVertex<T> next = (PathVertex<T>) i.next().getTo();
+			if(next.getStatus() != Status.Default){
+				next.resetStatus();
+			}
+		}
 	}
 	public String toString(){
 		String result = "";

@@ -72,10 +72,10 @@ public class PositiveWeighted <T> extends PathStrategy<T>{
 				next.setDistance(calced);
 				next.setPrevious(target);
 			}
-			
+			onLoopEnd(next);
 		}
 	}
 	
 	protected void onOverwrite(){}
-	
+	protected void onLoopEnd(PathVertex<T> target){}
 }
