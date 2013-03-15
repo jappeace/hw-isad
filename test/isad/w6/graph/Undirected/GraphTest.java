@@ -30,7 +30,7 @@ public class GraphTest {
 	
 	@Before
 	public void setUp() {
-		System.out.print("Graph with pathwalking test: ");
+		System.out.print("UndirectedGraph test: ");
 		instance = new Graph<String>();
 		instance.add("jappie");
 		instance.add("pownzor");
