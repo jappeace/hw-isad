@@ -58,7 +58,7 @@ public class TreeTest {
 		System.out.println("coordinates");
 		instance.calcX();
 		instance.calcY();
-		assertEquals("F(1,5)D(3,4)I(2,1)C(6,3)G(4,2)A(5,1)B(8,2)A(7,1)", instance.printPreWithCoordinates());
+		assertEquals("F(1,1)D(3,2)I(2,3)C(6,3)G(4,4)A(5,5)B(8,4)A(7,5)", instance.printPreWithCoordinates());
 		
 	}
 }

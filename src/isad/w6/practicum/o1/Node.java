@@ -35,13 +35,13 @@ public class Node<T> extends isad.w4.tree.binary.Node {
 	public void setX(int x) {
 		this._x = x;
 	}
-	public void calcY(){
-		setY(this.height());
+	public void calcY(int y){
+		setY(y);
 		if(hasLft()){
-			((Node<T>) getLft()).calcY();
+			((Node<T>) getLft()).calcY(y+1);
 		}
 		if(hasRght()){
-			((Node<T>) getRght()).calcY();
+			((Node<T>) getRght()).calcY(y+1);
 		}
 		
 	}

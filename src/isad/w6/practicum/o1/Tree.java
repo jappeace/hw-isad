@@ -20,7 +20,7 @@ public class Tree<T> extends isad.w4.tree.binary.Tree<T>{
 		((Node<T>) getRoot()).calcX(0);
 	}
 	public void calcY(){
-		((Node<T>) getRoot()).calcY();
+		((Node<T>) getRoot()).calcY(1);
 	}
 	public String printPreWithCoordinates(){
 		return ((Node<T>) getRoot()).printPreWithCoordinates();
