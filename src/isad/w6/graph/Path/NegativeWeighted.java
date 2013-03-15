@@ -4,7 +4,7 @@
  */
 package isad.w6.graph.Path;
 
-import isad.w6.graph.Path.PathVertex.Status;
+import isad.w6.graph.Path.Vertex.Status;
 
 /**
  *
@@ -12,14 +12,14 @@ import isad.w6.graph.Path.PathVertex.Status;
  */
 public class NegativeWeighted<T> extends PositiveWeighted<T> {
 
-	public NegativeWeighted(PathGraph<T> dataHolder){
+	public NegativeWeighted(Graph<T> dataHolder){
 		super(dataHolder);
 	}
 
 	@Override
-	public PathGraph<T> Find(T from) {
-		PathGraph<T> data = getData();
-		PathVertex<T> current = (PathVertex<T>)data.getVertex(from);
+	public Graph<T> Find(T from) {
+		Graph<T> data = getData();
+		Vertex<T> current = (Vertex<T>)data.getVertex(from);
 		current.setDistance((double)0);
 		// three cycles should be enough
 		for(int i = 3; i > 0; i--){
@@ -38,7 +38,7 @@ public class NegativeWeighted<T> extends PositiveWeighted<T> {
 	}
 	
 	@Override
-	public void onLoopEnd(PathVertex<T> target){
+	public void onLoopEnd(Vertex<T> target){
 		if(target.getStatus() == Status.Default){ // otherwise stackoverflow
 			DijkstrasAlgoritm(target);
 		}
@@ -50,7 +50,7 @@ public class NegativeWeighted<T> extends PositiveWeighted<T> {
 	 */
 	private class Check<T> extends PositiveWeighted<T>{
 		private boolean _overwridden = false;
-		public Check(PathGraph<T> dataHolder){
+		public Check(Graph<T> dataHolder){
 			super(dataHolder);
 		}
 		@Override

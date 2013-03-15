@@ -17,8 +17,8 @@ import org.junit.Test;
  * @author jappie
  */
 public class PathGraphTest {
-	PathGraph<String> instance, resultGraph;
-	PathVertex<String> resultVertex;
+	Graph<String> instance, resultGraph;
+	Vertex<String> resultVertex;
 	public PathGraphTest() {
 	}
 	
@@ -33,7 +33,7 @@ public class PathGraphTest {
 	@Before
 	public void setUp() {
 		System.out.print("Graph with pathwalking test: ");
-		instance = new PathGraph<String>();
+		instance = new Graph<String>();
 		resultGraph = null;
 		instance.add("jappie");
 		instance.add("pownzor");

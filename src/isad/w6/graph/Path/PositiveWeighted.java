@@ -13,15 +13,15 @@ import java.util.List;
  * @author jappie
  */
 public class PositiveWeighted <T> extends PathStrategy<T>{
-	public PositiveWeighted(PathGraph<T> dataHolder){
+	public PositiveWeighted(Graph<T> dataHolder){
 		super(dataHolder);
 	}
 
 	@Override
-	public PathGraph<T> Find(T from) {
-		PathGraph<T> data = getData();
+	public Graph<T> Find(T from) {
+		Graph<T> data = getData();
 		
-		PathVertex<T> current = (PathVertex<T>)data.getVertex(from);
+		Vertex<T> current = (Vertex<T>)data.getVertex(from);
 		current.setDistance((double)0);
 		DijkstrasAlgoritm(data.listVertexes());
 		return data;
@@ -30,13 +30,13 @@ public class PositiveWeighted <T> extends PathStrategy<T>{
 	 * selects a vertex to use dijkstras algoritm on
 	 * @param vertexes 
 	 */
-	private void DijkstrasAlgoritm(List<PathVertex<T>> vertexes){
-		Iterator<PathVertex<T>> i = vertexes.iterator();
-		PathVertex<T> smallest = null;
+	private void DijkstrasAlgoritm(List<Vertex<T>> vertexes){
+		Iterator<Vertex<T>> i = vertexes.iterator();
+		Vertex<T> smallest = null;
 		while(i.hasNext()){
-			PathVertex<T> current = i.next();
+			Vertex<T> current = i.next();
 			
-			if(current.getStatus() != PathVertex.Status.Used){
+			if(current.getStatus() != Vertex.Status.Used){
 				if(smallest == null){
 					smallest = current;
 				}else if(smallest.getDistance() > current.getDistance()){
@@ -55,12 +55,12 @@ public class PositiveWeighted <T> extends PathStrategy<T>{
 	 * the core of dijkstras algoritm, without the select vertex part
 	 * @param target 
 	 */
-	protected void DijkstrasAlgoritm(PathVertex<T> target){
-		target.setStatus(PathVertex.Status.Used);
+	protected void DijkstrasAlgoritm(Vertex<T> target){
+		target.setStatus(Vertex.Status.Used);
 		Iterator<Edge> i = target.getConnections().iterator();
 		while(i.hasNext()){
 			Edge e = i.next();
-			PathVertex<T> next = (PathVertex<T>) e.getTo();
+			Vertex<T> next = (Vertex<T>) e.getTo();
 			Double calced = e.getWeight() + target.getDistance();
 			if(next.getDistance() > calced){
 				onOverwrite();
@@ -71,14 +71,14 @@ public class PositiveWeighted <T> extends PathStrategy<T>{
 		}
 	}
 	
-	protected void prepToString(List<PathVertex<T>> vertexes){
+	protected void prepToString(List<Vertex<T>> vertexes){
 			// reseting status for the to string
-		Iterator<PathVertex<T>> i = vertexes.iterator();
+		Iterator<Vertex<T>> i = vertexes.iterator();
 		while(i.hasNext()){
-			PathVertex<T> current = i.next();
-			current.setStatus(PathVertex.Status.Default);
+			Vertex<T> current = i.next();
+			current.setStatus(Vertex.Status.Default);
 		}	
 	}
 	protected void onOverwrite(){}
-	protected void onLoopEnd(PathVertex<T> target){}
+	protected void onLoopEnd(Vertex<T> target){}
 }

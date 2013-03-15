@@ -9,24 +9,24 @@ package isad.w6.graph.Path;
  * @author jappie
  */
 public abstract class PathStrategy<T> {
-	private PathGraph<T> _dataHolder;
+	private Graph<T> _dataHolder;
 	public enum Strategy{
 		NegativeWeighted,
 		PositiveWeighted,
 		NotWeighted
 	}
-	public PathStrategy(PathGraph<T> dataHolder){
+	public PathStrategy(Graph<T> dataHolder){
 		_dataHolder = dataHolder;
 	}
-	public abstract PathGraph<T> Find(T from);
-	public PathVertex<T> Find(T from, T to){
-		PathGraph<T> data = Find(from);
-		return (PathVertex<T>) data.getVertex(to);
+	public abstract Graph<T> Find(T from);
+	public Vertex<T> Find(T from, T to){
+		Graph<T> data = Find(from);
+		return (Vertex<T>) data.getVertex(to);
 	}
 	/**
 	 * @return the _owner
 	 */
-	protected PathGraph<T> getData() {
+	protected Graph<T> getData() {
 		_dataHolder.clear();
 		return _dataHolder;
 	}
@@ -34,7 +34,7 @@ public abstract class PathStrategy<T> {
 	/**
 	 * @param owner the _owner to set
 	 */
-	protected void setData(PathGraph<T> owner) {
+	protected void setData(Graph<T> owner) {
 		this._dataHolder = owner;
 	}
 	
