@@ -18,6 +18,7 @@ public class TreePainter extends javax.swing.JPanel {
 	private Tree _tree;
 	private static final int circleRadius = 25;
 	private static final double xFactor = 3.5, yFactor = 2.5;
+	private boolean _mirrord =false;
 	/**
 	 * Creates new form TreePainter
 	 */
@@ -42,7 +43,8 @@ public class TreePainter extends javax.swing.JPanel {
 		List<Node<String>> l = getTree().getNodes();
 		for(Node<String> node : l){
 			int x = (int) ((int) node.getX()*circleRadius*xFactor), 
-				y = (int) (getTree().height()*circleRadius*yFactor-node.getY()*circleRadius*yFactor);
+				y = (int)(isMirrord() ?getTree().height()*circleRadius*yFactor-node.getY()*circleRadius*yFactor 
+					: node.getY()*circleRadius*yFactor);
 			g.drawOval(x, y, circleRadius*2, circleRadius*2);
 			g.drawString(node.getData().toString(), x+circleRadius, y+circleRadius);
 		}
@@ -83,5 +85,19 @@ public class TreePainter extends javax.swing.JPanel {
 	 */
 	private void setTree(Tree tree) {
 		this._tree = tree;
+	}
+
+	/**
+	 * @return the _mirrord
+	 */
+	public boolean isMirrord() {
+		return _mirrord;
+	}
+
+	/**
+	 * @param mirrord the _mirrord to set
+	 */
+	public void setMirrord(boolean mirrord) {
+		this._mirrord = mirrord;
 	}
 }
