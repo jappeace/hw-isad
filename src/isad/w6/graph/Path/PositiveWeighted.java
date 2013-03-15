@@ -49,12 +49,7 @@ public class PositiveWeighted <T> extends PathStrategy<T>{
 			DijkstrasAlgoritm(vertexes);
 		}
 		
-		// reseting status for the to string
-		i = vertexes.iterator();
-		while(i.hasNext()){
-			PathVertex<T> current = i.next();
-			current.setStatus(PathVertex.Status.Default);
-		}
+		prepToString(vertexes);
 	}
 	/**
 	 * the core of dijkstras algoritm, without the select vertex part
@@ -76,6 +71,14 @@ public class PositiveWeighted <T> extends PathStrategy<T>{
 		}
 	}
 	
+	protected void prepToString(List<PathVertex<T>> vertexes){
+			// reseting status for the to string
+		Iterator<PathVertex<T>> i = vertexes.iterator();
+		while(i.hasNext()){
+			PathVertex<T> current = i.next();
+			current.setStatus(PathVertex.Status.Default);
+		}	
+	}
 	protected void onOverwrite(){}
 	protected void onLoopEnd(PathVertex<T> target){}
 }

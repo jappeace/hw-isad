@@ -32,6 +32,8 @@ public class NegativeWeighted<T> extends PositiveWeighted<T> {
 		if(e.isOverwridden()){
 			throw new IllegalArgumentException("NegativeWeigted is caught in a negative cycle");
 		}
+		
+		prepToString(data.listVertexes());
 		return data;
 	}
 	
