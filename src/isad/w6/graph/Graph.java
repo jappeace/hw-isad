@@ -16,7 +16,7 @@ public class Graph<T>{
 	protected static final String _noRemoveText = "could not remove ", _noConnectText = "could not connect: ",
 			_findText = "Could not find ";
 	private Map<T, Vertex<T>> _vertexes;
-	
+	private static final double emptyConnection = 0.0;
 	public Graph(){
 		_vertexes = new HashMap<T, Vertex<T>>();
 	}
@@ -30,7 +30,7 @@ public class Graph<T>{
 	 * @param two 
 	 */
 	public void connect(T one, T two){
-		connect(one, two, 0.0);
+		connect(one, two, emptyConnection);
 	}
 	/**
 	 * connects two vertexes with a weight
@@ -115,6 +115,12 @@ public class Graph<T>{
 		return result;
 	}
 
-
+	public void undirectedConnect(T one, T two){
+		undirectedConnect(one, two, emptyConnection);
+	}
+	public void undirectedConnect(T one, T two, double weight){
+		connect(two, one, weight);
+		connect(one, two, weight);
+	}
 
 }
