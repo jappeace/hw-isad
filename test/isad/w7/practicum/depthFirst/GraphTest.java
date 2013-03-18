@@ -6,10 +6,10 @@ package isad.w7.practicum.depthFirst;
 
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -69,9 +69,7 @@ public class GraphTest {
 	public void testDepthFirstSearch() {
 		System.out.println("DepthFirstSearch");
 		String result = instance.DepthFirstSearch("F", "I");
-		assertEquals("C,A,C,A,D,C,A,B,E,H,J,K,I", result);
-		// TODO review the generated test code and remove the default call to fail.
-		fail("The test case is a prototype.");
+		assertEquals("C,A,C,A,D,C,A,B,E,H,J,K,I,", result);
 	}
 
 }
