@@ -19,15 +19,20 @@ public class Vertex<T> extends isad.w6.graph.Path.Vertex<T>{
 	
 	public DeepResult deeper(T target, String visits){
 		List<Edge> connections = this.getConnections();
+		setStatus(Status.Used);
 		for(Edge conn : connections){
 			Vertex<T> to = (Vertex<T>) conn.getTo();
 			if(to.getStatus().equals(Status.Default)){
-				to.setStatus(Status.Used);
+				
 				visits += to.getData() + ",";
 				if(to.getData().equals(target)){
-					return new DeepResult(false, visits.substring(0, visits.length()-1));
+					return new DeepResult(true, visits);
 				}else{
-					visits += to.deeper(target, visits).getVisits();
+					DeepResult r = to.deeper(target, visits);
+					if(r.isSucces()){
+						return r;
+					}
+					visits += r.getVisits();
 				}
 			}
 		}
