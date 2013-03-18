@@ -69,7 +69,7 @@ public class GraphTest {
 	public void testDepthFirstSearch() {
 		System.out.println("DepthFirstSearch");
 		String result = instance.DepthFirstSearch("F", "I");
-		assertEquals("", result);
+		assertEquals("C,A,C,A,D,C,A,B,E,H,J,K,I", result);
 		// TODO review the generated test code and remove the default call to fail.
 		fail("The test case is a prototype.");
 	}
