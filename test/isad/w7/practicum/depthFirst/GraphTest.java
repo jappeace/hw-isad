@@ -43,19 +43,19 @@ public class GraphTest {
 		instance.add("I");
 		instance.add("J");		
 		instance.add("K");		
-		instance.connect("A", "C");
-		instance.connect("A", "D");
-		instance.connect("D", "C");
-		instance.connect("C", "F");
-		instance.connect("C", "B");
-		instance.connect("F", "G");
-		instance.connect("F", "E");
-		instance.connect("B", "E");
-		instance.connect("E", "H");
-		instance.connect("E", "I");
-		instance.connect("I", "K");
-		instance.connect("K", "J");
-		instance.connect("J", "H");
+		instance.undirectedConnect("A", "C");
+		instance.undirectedConnect("A", "D");
+		instance.undirectedConnect("D", "C");
+		instance.undirectedConnect("C", "F");
+		instance.undirectedConnect("C", "B");
+		instance.undirectedConnect("F", "G");
+		instance.undirectedConnect("F", "E");
+		instance.undirectedConnect("B", "E");
+		instance.undirectedConnect("E", "H");
+		instance.undirectedConnect("E", "I");
+		instance.undirectedConnect("I", "K");
+		instance.undirectedConnect("K", "J");
+		instance.undirectedConnect("J", "H");
 	}
 	
 	@After
@@ -68,7 +68,7 @@ public class GraphTest {
 	@Test
 	public void testDepthFirstSearch() {
 		System.out.println("DepthFirstSearch");
-		String result = instance.DepthFirstSearch("I");
+		String result = instance.DepthFirstSearch("F", "I");
 		assertEquals("", result);
 		// TODO review the generated test code and remove the default call to fail.
 		fail("The test case is a prototype.");
