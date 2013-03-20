@@ -61,7 +61,7 @@ public class Graph<T> extends isad.w6.graph.Graph<T> {
 		check(from, to);
 		return getStrategy().Find(from, to);
 	}
-	/*
+	/**
 	 * prepares the vertexes for another algoritim
 	 */
 	public void clear(){
