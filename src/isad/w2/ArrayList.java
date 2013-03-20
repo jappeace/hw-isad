@@ -8,14 +8,14 @@ package isad.w2;
  *
  * @author jappie
  */
-public class intArray {
-	private int[] _items;
+public class ArrayList<T> {
+	private T[] _items;
 	private int _index;
 	/**
 	 * the size the array expands to
 	 */
 	private int _nextSize;
-	public intArray(int size){
+	public ArrayList(int size){
 		this._nextSize = size;
 		this.constructorMethods();
 	}
@@ -24,7 +24,7 @@ public class intArray {
 	}
 	
 	// toevoegen aan het einde van de lijst, mits niet vol
-	public void add(int n) throws Exception{
+	public void add(T n) throws Exception{
 		_index++;
 		if(_index == _items.length){
 			throw new Exception("array is to small");
@@ -33,7 +33,7 @@ public class intArray {
 	}
 
 	// haal de waarde op van een bepaalde index
-	public int get(int index)throws Exception{
+	public T get(int index)throws Exception{
 
 		if(!indexExists(index)){
 			throw new Exception("trying to get non existing index");
@@ -43,7 +43,7 @@ public class intArray {
 	};
 
 	// wijzig een item op een bepaalde index
-	void set(int index, int n)throws Exception{
+	void set(int index, T n)throws Exception{
 		if(!indexExists(index)){
 			throw new Exception("trying to set non existing index");
 		} 
@@ -65,15 +65,15 @@ public class intArray {
 	// maak de list leeg
 	public void clear(){
 		_index = -1;
-		_items = new int[_nextSize];		
+		_items = (T[]) new Object[_nextSize];		
 	} 
 
 	// tel hoe vaak het gegeven getal voorkomt
-	int countOccurences(int n){
+	int countOccurences(T n){
 		int occurence = 0;
 		for(int i = 0; i < _items.length; i++){
 
-			if(_items[i] == n){
+			if(_items[i].equals(n)){
 				occurence++;
 			}
 		}
