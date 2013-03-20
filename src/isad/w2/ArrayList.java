@@ -71,7 +71,7 @@ public class ArrayList<T> {
 	// tel hoe vaak het gegeven getal voorkomt
 	int countOccurences(T n){
 		int occurence = 0;
-		for(int i = 0; i < _items.length; i++){
+		for(int i = 0; i <= _index; i++){
 
 			if(_items[i].equals(n)){
 				occurence++;

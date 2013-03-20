@@ -4,7 +4,7 @@
  */
 package isad.w2;
 
-import isad.w2.intArray;
+import isad.w2.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -44,7 +44,7 @@ public class intArrayTest {
 	public void testAdd() throws Exception {
 		System.out.println("add");
 		int n = 4;
-		intArray instance = new intArray(1);
+		ArrayList<Integer> instance = new ArrayList<Integer>(1);
 		instance.add(n);
 		
 		if(instance.get(0) != n){
@@ -63,7 +63,7 @@ public class intArrayTest {
 		int n = 3;
 		int size = 5;
 		int last = 5;
-		intArray instance = new intArray(size);
+		ArrayList<Integer> instance = new ArrayList<Integer>(size);
 		instance.add(1);
 		instance.add(4);
 		instance.add(9);
@@ -91,12 +91,12 @@ public class intArrayTest {
 		System.out.println("countOccurences");
 		int n = 3;
 		int size = 5;
-		intArray instance = new intArray(size);
+		ArrayList<Integer> instance = new ArrayList<Integer>(size);
 		instance.add(3);
 		instance.add(4);
 		instance.add(3);
-		instance.add(5);
-		int expResult = 2;
+		instance.add(3);
+		int expResult = 3;
 		int result = instance.countOccurences(n);
 		assertEquals(expResult, result);
 	}
