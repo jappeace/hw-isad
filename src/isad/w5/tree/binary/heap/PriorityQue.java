@@ -46,7 +46,7 @@ public class PriorityQue<T extends Object> {
 		getHeapdata()[one] = getHeapdata()[two];
 		getHeapdata()[two] = temp;
 	}
-	private boolean test(int index){
+	private boolean notNull(int index){
 		if(getHeapdata().length <= index){
 			return false;
 		}
@@ -57,7 +57,7 @@ public class PriorityQue<T extends Object> {
 		build(index, index*2+1);
 	}
 	private void build(int parent, int child){
-		if(!test(child)){
+		if(!notNull(child)){
 			return;
 		}
 		
