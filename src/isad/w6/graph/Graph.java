@@ -106,11 +106,11 @@ public class Graph<T>{
 	
 	@Override
 	public String toString(){
-		String result = "Data: " + System.lineSeparator();
+		String result = "Data: " + System.getProperty("line.separator");
 		Iterator<Vertex<T>> i = getVertexes().values().iterator();
 		while(i.hasNext()){
 			Vertex<T> v = i.next();
-			result += "		"+ v.toString()+ System.lineSeparator();
+			result += "		"+ v.toString()+ System.getProperty("line.separator");
 		}
 		return result;
 	}
