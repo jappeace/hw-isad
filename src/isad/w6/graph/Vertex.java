@@ -54,11 +54,11 @@ public class Vertex<T> {
 	
 	@Override
 	public String toString(){
-		String result = getData() + ", connections:" + System.lineSeparator();
+		String result = getData() + ", connections:" + System.getProperty("line.separator");
 		Iterator<Edge> i = getConnections().iterator();
 		while(i.hasNext()){
 			Edge e = i.next();
-			result += "		"+ e.toString()+ System.lineSeparator();
+			result += "		"+ e.toString()+ System.getProperty("line.separator");
 		}
 		return result;
 	}
